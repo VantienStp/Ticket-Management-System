@@ -26,7 +26,7 @@ Ticket Management System là ứng dụng Full-Stack với các mục tiêu:
 
 ### Quản trị (Admin)
 - Xem toàn bộ ticket.  
-- Lọc theo trạng thái, mức ưu tiên, người tạo.  
+- Lọc theo trạng thái, ưu tiên, người tạo.  
 - Phân công ticket cho nhân sự.  
 - Cập nhật trạng thái: Pending → In Progress → Done.  
 - Quản lý tài khoản người dùng.
@@ -41,13 +41,13 @@ Ticket Management System là ứng dụng Full-Stack với các mục tiêu:
 - MongoDB + Mongoose  
 - JWT Authentication  
 - BcryptJS  
-- Multer (nếu có upload file)
+- Multer (upload file nếu cần)
 
 ### Frontend
 - React / Next.js  
 - TailwindCSS  
 - Fetch API hoặc Axios  
-- Zustand / Context API (tuỳ chọn)
+- Zustand / Context API
 
 ### Công cụ phát triển
 - VS Code  
@@ -59,6 +59,7 @@ Ticket Management System là ứng dụng Full-Stack với các mục tiêu:
 ## 4. Cấu trúc thư mục
 
 ### Backend (`tms_backend/`)
+
 tms_backend/
 ├── controllers/
 ├── models/
@@ -69,109 +70,103 @@ tms_backend/
 ├── server.js
 └── README.md
 
-shell
-Sao chép mã
-
-### Frontend (`tms_frontend/`)
+### end (`tms_frontend/`)
 tms_frontend/
 ├── src/
-│ ├── app/
-│ ├── components/
-│ ├── hooks/
-│ ├── lib/
-│ └── styles/
+│   ├── app/
+│   ├── components/
+│   ├── hooks/
+│   ├── lib/
+│   └── styles/
 ├── public/
 └── package.json
 
-yaml
-Sao chép mã
-
----
 
 ## 5. Cách chạy dự án
 
 ### Backend
 
 1. Cài đặt package:
+
 cd tms_backend
 npm install
 
-markdown
-Sao chép mã
+2. Tạo file .env:
 
-2. Tạo file `.env`:
 PORT=5000
 MONGO_URI=<your_mongo_uri>
 JWT_SECRET=<your_secret>
 REFRESH_SECRET=<your_secret>
 
-markdown
-Sao chép mã
-
 3. Chạy server:
+
+
+5. Cách chạy dự án
+Backend
+
+Cài đặt package:
+
+cd tms_backend
+npm install
+
+
+Tạo file .env:
+
+PORT=5000
+MONGO_URI=<your_mongo_uri>
+JWT_SECRET=<your_secret>
+REFRESH_SECRET=<your_secret>
+
+
+Chạy server:
+
 npm start
 
-yaml
-Sao chép mã
+Frontend
 
----
+Cài đặt package:
 
-### Frontend
-
-1. Cài đặt package:
 cd tms_frontend
 npm install
 
-markdown
-Sao chép mã
 
-2. Tạo file `.env.local`:
+Tạo file .env.local:
+
 NEXT_PUBLIC_API_BASE_URL=http://localhost:5000/api
 
-markdown
-Sao chép mã
 
-3. Chạy dự án:
+Chạy dự án:
+
 npm run dev
 
-yaml
-Sao chép mã
+6. API Endpoints
+Authentication
+METHOD	ENDPOINT	MÔ TẢ
+POST	/api/auth/register	Đăng ký tài khoản
+POST	/api/auth/login	Đăng nhập
+POST	/api/auth/refresh-token	Làm mới token
+Ticket
+METHOD	ENDPOINT	MÔ TẢ
+GET	/api/tickets	Lấy toàn bộ ticket (admin)
+GET	/api/tickets/my	Lấy ticket của user đang đăng nhập
+POST	/api/tickets	Tạo ticket mới
+PUT	/api/tickets/:id	Cập nhật ticket
+DELETE	/api/tickets/:id	Xóa ticket
+7. Roadmap
 
----
+ Thêm realtime bằng Socket.io
 
-## 6. API Endpoints
+ Thêm phân quyền nâng cao (Role: Manager)
 
-### Authentication
-| METHOD | ENDPOINT | MÔ TẢ |
-|--------|-----------|--------|
-| POST | /api/auth/register | Đăng ký tài khoản |
-| POST | /api/auth/login | Đăng nhập |
-| POST | /api/auth/refresh-token | Làm mới token |
+ Hỗ trợ upload nhiều files
 
-### Ticket
-| METHOD | ENDPOINT | MÔ TẢ |
-|--------|-----------|--------|
-| GET | /api/tickets | Lấy toàn bộ ticket (admin) |
-| GET | /api/tickets/my | Lấy ticket của user đang đăng nhập |
-| POST | /api/tickets | Tạo ticket mới |
-| PUT | /api/tickets/:id | Cập nhật ticket |
-| DELETE | /api/tickets/:id | Xóa ticket |
+ Dashboard analytics cho admin
 
----
+ Thêm Activity Log chi tiết
 
-## 7. Roadmap (kế hoạch phát triển)
+ Deploy: BE lên Render, FE lên Vercel
 
-- [ ] Thêm realtime bằng Socket.io  
-- [ ] Thêm phân quyền nâng cao (Role: Manager)  
-- [ ] Hỗ trợ upload nhiều files  
-- [ ] Dashboard analytics cho admin  
-- [ ] Thêm hoạt động (Activity Log) chi tiết  
-- [ ] Triển khai BE lên Render & FE lên Vercel  
-
----
-
-## 8. ERD – Mô tả mô hình dữ liệu (cơ bản)
-
+8. ERD – Mô tả mô hình dữ liệu (cơ bản)
 User
 ├── name: String
 ├── email: String
@@ -187,26 +182,17 @@ Ticket
 ├── assignedTo: ObjectId(User)
 └── history: [ { action, date, user } ]
 
-yaml
-Sao chép mã
+9. Tác giả
 
----
-
-## 9. Tác giả
-
-Tiến – Fullstack Developer (Fresher).  
+Tiến – Fullstack Developer (Fresher).
 Dự án phát triển với mục tiêu rèn luyện kỹ năng thực tế và xây dựng hệ thống quản lý hoàn chỉnh.
 
----
+10. Giấy phép (License)
 
-## 10. Giấy phép (License)
+MIT License – Tự do sử dụng, chỉnh sửa và triển khai.
 
-MIT License.  
-Bạn có thể sử dụng, chỉnh sửa và triển khai tự do.
+11. Ghi chú
 
----
+README sẽ được cập nhật khi dự án mở rộng.
 
-## 11. Ghi chú
-
-- README sẽ tiếp tục cập nhật khi bổ sung giao diện hoặc tính năng mới.  
-- Mọi ý tưởng mở rộng đều được chào đón.
+Mọi ý tưởng cải tiến đều được hoan nghênh.
